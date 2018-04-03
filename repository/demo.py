@@ -26,7 +26,7 @@ class Demo(EnvExperiment):
             n = [0] * 4
             self.count_ttls(n)
             print(n)
-            delay(10*ms)
+            delay(500*ms)
             self.set_urukul()
             delay(15*ms)
             self.set_dacs()
