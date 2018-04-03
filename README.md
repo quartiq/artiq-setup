@@ -1,4 +1,27 @@
-# Controller
+# Sinara
+
+The Sinara components are open hardware. The designs are available under the
+terms of the CERN Open Hardware License v1.2
+(https://www.ohwr.org/attachments/2390/cern_ohl_v_1_2.pdf) at:
+https://github.com/sinara-hw/sinara
+
+The device has been configured with the software versions below.
+An example device database, startup, idle, and demo experiments, as well
+as this document are available at:
+https://github.com/quartiq/artiq-setup/tree/ptb-schmidt
+
+Modification and disassembly of the crate must only be done with proper ESD
+protection and with the devices disconnected. Modifications that go beyond the
+manipulation of the DIP switches or addition/removal of modules by qualified
+personnel will void the warranty.
+
+The controller and the modules are electrically floating and not connected
+to mains ground via the power supply. A proper ground connection should be
+established at an appropriate place.
+
+# Components
+
+## Controller
 
 * Kasli/v1.1
 * Serial: #21
