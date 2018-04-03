@@ -15,10 +15,12 @@ class Demo(EnvExperiment):
             for ch in range(4):
                 self.setattr_device("urukul{}_ch{}".format(u, ch))
 
+        self.setattr_device("dac0")
+
     @kernel
     def run(self):
         self.core.break_realtime()
-        delay(10*ms)
+        delay(100*ms)
         while True:
             self.pulse_ttls(10*us)
             n = [0] * 4
@@ -26,6 +28,8 @@ class Demo(EnvExperiment):
             print(n)
             delay(10*ms)
             self.set_urukul()
+            delay(15*ms)
+            self.set_dacs()
 
     @kernel
     def set_urukul(self):
@@ -81,3 +85,11 @@ class Demo(EnvExperiment):
         self.ttl13.pulse(t)
         self.ttl14.pulse(t)
         self.ttl15.pulse(t)
+
+    @kernel
+    def set_dacs(self):
+        self.dac0.set_leds(0xff)
+        self.dac0.set_dac(
+            [-9. + i*.5 for i in range(32)],
+            list(range(32))
+        )

@@ -10,6 +10,8 @@ class Startup(EnvExperiment):
             for ch in range(4):
                 self.setattr_device("urukul{}_ch{}".format(u, ch))
 
+        self.setattr_device("zotino0")
+
         self.setattr_device("led0")
         self.setattr_device("cool0")
 
@@ -31,6 +33,9 @@ class Startup(EnvExperiment):
         self.urukul1_ch1.init()
         self.urukul1_ch2.init()
         self.urukul1_ch3.init()
+
+        delay(20*ms)
+        self.zotino0.init()
 
         delay(10*ms)
         for i in range(3):

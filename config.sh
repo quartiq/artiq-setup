@@ -10,7 +10,7 @@ if true; then
     -s mac 54:10:ec:a9:d2:e0 \
     -s ip 10.0.16.30 \
     -s startup_clock e \
-    -f startup_kernel startup.elf # \
+    -f startup_kernel startup.elf \
     # -f idle_kernel idle.elf
   artiq_flash -t kasli -V opticlock -f storage.img storage start
 else
@@ -19,6 +19,6 @@ else
     -s mac 54:10:ec:aa:da:a7 \
     -s ip 10.0.16.30 \
     -s startup_clock e \
-    -f startup_kernel startup.elf # \
+    -f startup_kernel startup.elf \
     # -f idle_kernel idle.elf
 fi
