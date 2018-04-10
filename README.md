@@ -24,42 +24,62 @@ established at an appropriate place.
 ## Controller
 
 * Kasli/v1.1
-* Serial: #21
-* EUI-48: 54-10-ec-a9-d2-e0
-* MAC: 54:10:ec:a9:d2:e0
+* Serial: #15
+* EUI-48: 54-10-ec-a9-d2-7b
+* MAC: 54:10:ec:a9:d2:7b
 * IP address: 10.0.16.30
-* Gateware, bootloader, firmware: artiq-4.0.dev-efbe915b
+* Gateware, bootloader, firmware: artiq-4.0.dev 1ef673c2
 
 ## EEM0
 
-* DIO_BNC/v1.2
-* EUI-48: 54-10-ec-aa-1e-f7
+* DIO_BNC/v1.1
+* EUI-48:
 * Channels 0-3: input
 * Channels 4-7: output
 * Termination: none
 
 ## EEM1
 
-* DIO_BNC/v1.2
-* EUI-48: 54-10-ec-a9-f7-b5
+* DIO_BNC/v1.1
+* EUI-48: d8-80-39-ee-f2-a4
 * Channels 0-3: output
 * Channels 4-7: output
 * Termination: none
 
-## EEM4, EEM5
+## EEM2
+
+* DIO_BNC/v1.1
+* EUI-48: d8-80-39-ef-43-2e
+* Channels 0-3: output
+* Channels 4-7: output
+* Termination: none
+
+## EEM3
+
+* Sampler/v2.0
+* EUI-48: 54-10-ec-36-83-cf
+* Termination: none
+
+## EEM4
 
 * Urukul-AD9910/v1.1
-* EUI-48: 54-10-ec-35-06-c5, 54-10-ec-34-f0-a7
+* EUI-48: 54-10-ec-35-26-25
 * 100 MHz XO on clk_sel=0
-* using EEM1 for SW[0:3]
+
+## EEM5
+
+* Urukul-AD9910/v1.1
+* EUI-48: 54-10-ec-35-62-e4
+* 100 MHz XO on clk_sel=0
 
 ## EEM6
 
-* Urukul-AD9912/v1.1
-* EUI-48: 54-10-ec-35-75-57
+* Urukul-AD9910/v1.1
+* EUI-48: 54-10-ec-35-06-70
 * 100 MHz XO on clk_sel=0
 
 ## EEM7
 
 * Zotino/v1.1
-* EUI-48: 54-10-ec-aa-da-7c
+* EUI-48: 54-10-ec-a9-63-ed
+* CH0-CH7 on IDC-BNC
