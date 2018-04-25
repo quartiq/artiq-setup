@@ -8,7 +8,7 @@ https://github.com/sinara-hw/sinara
 The device has been configured with the software versions below.
 An example device database, startup, idle, and demo experiments, as well
 as this document are available at:
-https://github.com/quartiq/artiq-setup/tree/ptb-schmidt
+https://github.com/quartiq/artiq-setup/tree/hub-krutzik
 
 Modification and disassembly of the crate must only be done with proper ESD
 protection and with the devices disconnected. Modifications that go beyond the
@@ -18,6 +18,44 @@ personnel will void the warranty.
 The controller and the modules are electrically floating and not connected
 to mains ground via the power supply. A proper ground connection should be
 established at an appropriate place.
+
+# Example setup sequence
+
+Your control system is using a current development release (the `master` branch)
+of ARTIQ (see below). Follow the guidelines in the `master` version of the manual
+(https://m-labs.hk/artiq/manual-master/installing.html). As described in the
+manual, a few steps are necessary to use the master branch.
+
+To install the ARTIQ packages, both the `main` and the `dev` conda labels need
+to be available. Insert the `dev` label between the `main` and the
+`conda-forge` channels:
+
+```
+$ conda config --prepend channels http://conda.anaconda.org/conda-forge/label/main
+$ conda config --prepend channels http://conda.anaconda.org/conda-forge/label/dev
+$ conda config --prepend channels http://conda.anaconda.org/m-labs/label/main
+```
+
+Create and activate a conda environment for the exact ARTIQ package
+release matching the gateware and software on your device:
+
+```
+$ conda create -n artiq-4 artiq=4.0.de=822+git1ef673c2
+```
+
+Clone this repository containing the device database and example experiments:
+
+```
+$ git clone -b hub-krutzik https://github.com/quartiq/artiq-setup.git
+```
+
+Activate the conda environment, and start an ARTIQ session using the examples:
+
+```
+$ activate artiq-4
+$ cd artiq-setup
+$ artiq_session
+```
 
 # Components
 
