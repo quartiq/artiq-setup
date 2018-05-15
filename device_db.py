@@ -1,4 +1,4 @@
-core_addr = "10.0.16.113"
+core_addr = "10.0.16.116"
 
 device_db = {
     "core": {
