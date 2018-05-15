@@ -5,10 +5,30 @@ terms of the CERN Open Hardware License v1.2
 (https://www.ohwr.org/attachments/2390/cern_ohl_v_1_2.pdf) at:
 https://github.com/sinara-hw/sinara
 
+# ARTIQ
+
+ARTIQ is free software: you can redistribute it and/or modify it under the
+terms of the GNU Lesser General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+ARTIQ is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along
+with ARTIQ. If not, see <http://www.gnu.org/licenses/>.
+
+The ARTIQ source code is available at https://github.com/m-labs/artiq
+
+# Code
+
 The device has been configured with the software versions below.
 An example device database, startup, idle, and demo experiments, as well
 as this document are available at:
-https://github.com/quartiq/artiq-setup/tree/ptb-schmidt
+https://github.com/quartiq/artiq-setup/tree/luh-ospelkaus-13
+
+# Electrical
 
 Modification and disassembly of the crate must only be done with proper ESD
 protection and with the devices disconnected. Modifications that go beyond the
@@ -24,16 +44,13 @@ established at an appropriate place.
 ## Controller
 
 * Kasli/v1.1
-* Serial: #18
-* EUI-48: 54-10-ec-aa-09-72
-* MAC: 54:10:ec:aa:09:72
-* IP address: 10.0.16.118
-* Gateware, bootloader, firmware: artiq-4.0.dev 1ef673c2
+* Serial: #13
+* IP address: 10.0.16.113
+* Gateware, bootloader, firmware: artiq-4.0.dev 26faaad2
 
 ## EEM0
 
 * DIO_BNC/v1.1
-* EUI-48: 54-10-ec-aa-02-3c
 * Channels 0-3: input
 * Channels 4-7: output
 * Termination: none
@@ -41,7 +58,6 @@ established at an appropriate place.
 ## EEM1
 
 * DIO_BNC/v1.1
-* EUI-48: 54-10-ec-a9-9e-2d
 * Channels 0-3: output
 * Channels 4-7: output
 * Termination: none
@@ -49,7 +65,6 @@ established at an appropriate place.
 ## EEM2
 
 * DIO_BNC/v1.1
-* EUI-48: 54-10-ec-a9-87-ff
 * Channels 0-3: output
 * Channels 4-7: output
 * Termination: none
@@ -57,29 +72,24 @@ established at an appropriate place.
 ## EEM3
 
 * Sampler/v2.0
-* EUI-48:
 * Termination: none
 
 ## EEM4
 
 * Urukul-AD9910/v1.1
-* EUI-48: 54-10-ec-35-7f-42
 * 100 MHz XO on clk_sel=0
 * RF outputs and CLK SMA grounded
 
 ## EEM5
 
 * Urukul-AD9910/v1.1
-* EUI-48: 54-10-ec-35-8d-ff
 * 100 MHz XO on clk_sel=0
 * RF outputs and CLK SMA grounded
 
 ## EEM6
 
 * Grabber/v1.1
-* EUI-48: 54-10-ec-a9-d6-93
 
 ## EEM7
 
 * Zotino/v1.1
-* EUI-48:
