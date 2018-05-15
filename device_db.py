@@ -344,11 +344,68 @@ device_db = {
         }
     },
 
-    "cameralink0": {
+    "spi_urukul2": {
         "type": "local",
-        "module": "artiq.coredevice.cameralink",
-        "class": "CameraLink",
+        "module": "artiq.coredevice.spi2",
+        "class": "SPIMaster",
         "arguments": {"channel": 31}
+    },
+    "ttl_urukul2_io_update": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 32}
+    },
+    "urukul2_cpld": {
+        "type": "local",
+        "module": "artiq.coredevice.urukul",
+        "class": "CPLD",
+        "arguments": {
+            "spi_device": "spi_urukul2",
+            "io_update_device": "ttl_urukul2_io_update",
+            "refclk": 100e6,
+            "clk_sel": 0
+        }
+    },
+    "urukul2_ch0": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 40,
+            "chip_select": 4,
+            "cpld_device": "urukul2_cpld"
+        }
+    },
+    "urukul2_ch1": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 40,
+            "chip_select": 5,
+            "cpld_device": "urukul2_cpld"
+        }
+    },
+    "urukul2_ch2": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 40,
+            "chip_select": 6,
+            "cpld_device": "urukul2_cpld"
+        }
+    },
+    "urukul2_ch3": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 40,
+            "chip_select": 7,
+            "cpld_device": "urukul2_cpld"
+        }
     },
 
     "led0": {
@@ -392,5 +449,4 @@ device_db = {
             "clr_device": "ttl_zotino0_clr"
         }
     },
-    "dac0": "zotino0"
 }

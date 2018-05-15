@@ -6,8 +6,8 @@ from migen.build.generic_platform import ConstraintError
 from misoc.integration.builder import builder_args, builder_argdict
 from misoc.targets.kasli import soc_kasli_args, soc_kasli_argdict
 
-from artiq.gateware.targets.kasli import (_StandaloneBase, _dio, _urukul,
-        _sampler, _zotino)
+from artiq.gateware.targets.kasli import (
+    _StandaloneBase, _dio, _urukul, _sampler, _zotino)
 from artiq.gateware import rtio
 from artiq.gateware.rtio.phy import ttl_simple, ttl_serdes_7series, spi2
 from artiq.build_soc import build_artiq_soc
@@ -28,7 +28,8 @@ class LUHOspelkaus(_StandaloneBase):
         platform.add_extension(_sampler("eem3"))
         platform.add_extension(_urukul("eem4"))
         platform.add_extension(_urukul("eem5"))
-        platform.add_extension(_grabber("eem6"))
+        platform.add_extension(_urukul("eem6"))
+        # platform.add_extension(_grabber("eem6"))
         platform.add_extension(_zotino("eem7"))
 
         try:
@@ -68,8 +69,8 @@ class LUHOspelkaus(_StandaloneBase):
         pads = platform.request("eem3_sdr")
         self.specials += DifferentialOutput(1, pads.p, pads.n)
 
-        # EEM4, EEM5: Urukul
-        for eem in "eem4 eem5".split():
+        # EEM4, EEM5, EEM6: Urukul
+        for eem in "eem4 eem5 eem6".split():
             phy = spi2.SPIMaster(self.platform.request("{}_spi_p".format(eem)),
                     self.platform.request("{}_spi_n".format(eem)))
             self.submodules += phy
