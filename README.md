@@ -46,7 +46,7 @@ established at an appropriate place.
 * Kasli/v1.1
 * Serial: #11
 * IP address: 10.0.16.111
-* Gateware, bootloader, firmware: artiq-4.0.dev b81b20ca
+* Gateware, bootloader, firmware: 4.0.dev+1009.g1ff3d164
 
 ## EEM0
 
