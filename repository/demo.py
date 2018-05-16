@@ -21,7 +21,7 @@ class Demo(EnvExperiment):
 
     @rpc(flags={"async"})
     def monitor(self, n, v):
-        print(n, v)
+        print("ttl_in: {}, sampler: {}".format(n, ", ".join("{: 3.2f}".format(_) for _ in v)))
 
     @kernel
     def run(self):
