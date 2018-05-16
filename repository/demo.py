@@ -12,7 +12,7 @@ class Demo(EnvExperiment):
 
         self.setattr_device("sampler0")
 
-        for u in range(3):
+        for u in range(2):
             self.setattr_device("urukul{}_cpld".format(u))
             for ch in range(4):
                 self.setattr_device("urukul{}_ch{}".format(u, ch))
@@ -52,10 +52,6 @@ class Demo(EnvExperiment):
         self.urukul1_ch1.set_att(10*dB)
         self.urukul1_ch2.set_att(10*dB)
         self.urukul1_ch3.set_att(10*dB)
-        self.urukul2_ch0.set_att(10*dB)
-        self.urukul2_ch1.set_att(10*dB)
-        self.urukul2_ch2.set_att(10*dB)
-        self.urukul2_ch3.set_att(10*dB)
         self.urukul0_ch0.set(100*MHz)
         self.urukul0_ch1.set(110*MHz)
         self.urukul0_ch2.set(120*MHz)
@@ -64,22 +60,14 @@ class Demo(EnvExperiment):
         self.urukul1_ch1.set(210*MHz)
         self.urukul1_ch2.set(220*MHz)
         self.urukul1_ch3.set(230*MHz)
-        self.urukul2_ch0.set(300*MHz)
-        self.urukul2_ch1.set(310*MHz)
-        self.urukul2_ch2.set(320*MHz)
-        self.urukul2_ch3.set(330*MHz)
-        self.urukul0_cpld.cfg_sw(0, 1)
-        self.urukul0_cpld.cfg_sw(1, 1)
-        self.urukul0_cpld.cfg_sw(2, 1)
-        self.urukul0_cpld.cfg_sw(3, 1)
+        self.urukul0_ch0.sw.on()
+        self.urukul0_ch1.sw.on()
+        self.urukul0_ch2.sw.on()
+        self.urukul0_ch3.sw.on()
         self.urukul1_cpld.cfg_sw(0, 1)
         self.urukul1_cpld.cfg_sw(1, 1)
         self.urukul1_cpld.cfg_sw(2, 1)
         self.urukul1_cpld.cfg_sw(3, 1)
-        self.urukul2_cpld.cfg_sw(0, 1)
-        self.urukul2_cpld.cfg_sw(1, 1)
-        self.urukul2_cpld.cfg_sw(2, 1)
-        self.urukul2_cpld.cfg_sw(3, 1)
 
     @kernel
     def count_ttls(self, n):
