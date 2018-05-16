@@ -7,8 +7,8 @@ artiq_compile -o startup.elf repository/startup.py
 
 if true; then
   artiq_mkfs storage.img \
-    -s mac 54:10:ec:aa:82:f4 \
-    -s ip 10.0.16.114 \
+    -s mac 54:10:ec:aa:8a:e7 \
+    -s ip 10.0.16.111 \
     -s startup_clock e \
     -f startup_kernel startup.elf \
     # -f idle_kernel idle.elf
@@ -16,8 +16,8 @@ if true; then
 else
   artiq_coreconfig erase
   artiq_coreconfig write \
-    -s mac 54:10:ec:aa:82:f4 \
-    -s ip 10.0.16.114 \
+    -s mac 54:10:ec:aa:8a:e7 \
+    -s ip 10.0.16.111 \
     -s startup_clock e \
     -f startup_kernel startup.elf \
     # -f idle_kernel idle.elf

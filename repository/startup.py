@@ -5,7 +5,7 @@ class Startup(EnvExperiment):
     def build(self):
         self.setattr_device("core")
 
-        for u in range(3):
+        for u in range(2):
             self.setattr_device("urukul{}_cpld".format(u))
             for ch in range(4):
                 self.setattr_device("urukul{}_ch{}".format(u, ch))
@@ -39,17 +39,6 @@ class Startup(EnvExperiment):
         self.urukul1_ch1.init()
         self.urukul1_ch2.init()
         self.urukul1_ch3.init()
-
-        delay(20*ms)
-        try:
-            self.urukul2_cpld.init()
-            delay(20*ms)
-            self.urukul2_ch0.init()
-            self.urukul2_ch1.init()
-            self.urukul2_ch2.init()
-            self.urukul2_ch3.init()
-        except:  # grabber
-            pass
 
         delay(20*ms)
         self.zotino0.init()

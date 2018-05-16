@@ -13,9 +13,11 @@ from artiq.gateware.rtio.phy import ttl_simple, ttl_serdes_7series, spi2
 from artiq.build_soc import build_artiq_soc
 
 
-class LUHOspelkaus(_StandaloneBase):
-    def __init__(self, **kwargs):
-        _StandaloneBase.__init__(self, **kwargs)
+class PTBHuntemann(_StandaloneBase):
+    def __init__(self, hw_rev=None, **kwargs):
+        if hw_rev is None:
+            hw_rev = "v1.1"
+        _StandaloneBase.__init__(self, hw_rev=hw_rev, **kwargs)
 
         self.config["SI5324_AS_SYNTHESIZER"] = None
         # self.config["SI5324_EXT_REF"] = None
@@ -26,10 +28,8 @@ class LUHOspelkaus(_StandaloneBase):
         platform.add_extension(_dio("eem1"))
         platform.add_extension(_dio("eem2"))
         platform.add_extension(_sampler("eem3"))
-        platform.add_extension(_urukul("eem4"))
-        platform.add_extension(_urukul("eem5"))
+        platform.add_extension(_urukul("eem5", "eem4"))
         platform.add_extension(_urukul("eem6"))
-        # platform.add_extension(_grabber("eem6"))
         platform.add_extension(_zotino("eem7"))
 
         try:
@@ -69,8 +69,8 @@ class LUHOspelkaus(_StandaloneBase):
         pads = platform.request("eem3_sdr")
         self.specials += DifferentialOutput(1, pads.p, pads.n)
 
-        # EEM4, EEM5, EEM6: Urukul
-        for eem in "eem4 eem5 eem6".split():
+        # EEM5+EEM4, EEM6: Urukul
+        for eem in "eem5 eem6".split():
             phy = spi2.SPIMaster(self.platform.request("{}_spi_p".format(eem)),
                     self.platform.request("{}_spi_n".format(eem)))
             self.submodules += phy
@@ -84,7 +84,11 @@ class LUHOspelkaus(_StandaloneBase):
             self.submodules += phy
             rtio_channels.append(rtio.Channel.from_phy(phy))
 
-        # EEM6: Grabber
+        for i in range(4):
+            pads = platform.request("eem5_sw{}".format(i))
+            phy = ttl_serdes_7series.Output_8X(pads.p, pads.n)
+            self.submodules += phy
+            rtio_channels.append(rtio.Channel.from_phy(phy))
 
         for i in (1, 2):
             sfp_ctl = platform.request("sfp_ctl", i)
@@ -119,7 +123,7 @@ def main():
     parser.set_defaults(output_dir="artiq_kasli")
     args = parser.parse_args()
 
-    soc = LUHOspelkaus(**soc_kasli_argdict(args))
+    soc = PTBHuntemann(**soc_kasli_argdict(args))
     build_artiq_soc(soc, builder_argdict(args))
 
 

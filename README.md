@@ -26,7 +26,7 @@ The ARTIQ source code is available at https://github.com/m-labs/artiq
 The device has been configured with the software versions below.
 An example device database, startup, idle, and demo experiments, as well
 as this document are available at:
-https://github.com/quartiq/artiq-setup/tree/luh-ospelkaus-14
+https://github.com/quartiq/artiq-setup/tree/ptb-huntemann-11
 
 # Electrical
 
@@ -44,27 +44,27 @@ established at an appropriate place.
 ## Controller
 
 * Kasli/v1.1
-* Serial: #14
-* IP address: 10.0.16.114
-* Gateware, bootloader, firmware: artiq-4.0.dev 26faaad2
+* Serial: #11
+* IP address: 10.0.16.111
+* Gateware, bootloader, firmware: artiq-4.0.dev b81b20ca
 
 ## EEM0
 
-* DIO_BNC/v1.1
+* DIO_SMA/v1.1
 * Channels 0-3: input
 * Channels 4-7: output
 * Termination: none
 
 ## EEM1
 
-* DIO_BNC/v1.1
+* DIO_SMA/v1.1
 * Channels 0-3: output
 * Channels 4-7: output
 * Termination: none
 
 ## EEM2
 
-* DIO_BNC/v1.1
+* DIO_SMA/v1.1
 * Channels 0-3: output
 * Channels 4-7: output
 * Termination: none
@@ -74,21 +74,17 @@ established at an appropriate place.
 * Sampler/v2.0
 * Termination: none
 
-## EEM4
+## EEM5, EEM4
 
-* Urukul-AD9910/v1.1
+* Urukul-AD9912/v1.1
 * 100 MHz XO on clk_sel=0
-* RF outputs and CLK SMA grounded
-
-## EEM5
-
-* Urukul-AD9910/v1.1
-* 100 MHz XO on clk_sel=0
-* RF outputs and CLK SMA grounded
+* RF outputs and CLK SMA shields grounded
 
 ## EEM6
 
-* Grabber/v1.1
+* Urukul-AD9910/v1.1
+* 100 MHz XO on clk_sel=0
+* RF outputs and CLK SMA shields grounded
 
 ## EEM7
 
