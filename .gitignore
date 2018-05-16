@@ -1,0 +1,6 @@
+*.elf
+artiq_kasli
+storage.img
+/dataset_db.pyon
+/last_rid.pyon
+/results
