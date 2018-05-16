@@ -7,40 +7,30 @@ class Demo(EnvExperiment):
         self.setattr_device("core")
         self.setattr_device("led0")
 
-        for ch in range(24):
+        for ch in range(8):
             self.setattr_device("ttl{}".format(ch))
 
-        self.setattr_device("sampler0")
-
-        for u in range(2):
+        for u in range(1):
             self.setattr_device("urukul{}_cpld".format(u))
             for ch in range(4):
                 self.setattr_device("urukul{}_ch{}".format(u, ch))
 
-        self.setattr_device("zotino0")
-
     @rpc(flags={"async"})
-    def monitor(self, n, v):
-        print("ttl_in: {}, sampler: {}".format(n, ", ".join("{: 3.2f}".format(_) for _ in v)))
+    def monitor(self, n):
+        print("ttl_in: {}".format(n))
 
     @kernel
     def run(self):
         self.core.break_realtime()
         delay(100*ms)
-        self.sampler0.init()
-        self.zotino0.init()
         while True:
             self.pulse_ttls(10*us)
             n = [0] * 4
             self.count_ttls(n)
             delay(100*us)
-            v = [0.] * 8
-            self.sampler0.sample(v)
-            self.monitor(n, v)
+            self.monitor(n)
             delay(500*ms)
             self.set_urukul()
-            delay(15*ms)
-            self.set_dacs()
 
     @kernel
     def set_urukul(self):
@@ -48,26 +38,14 @@ class Demo(EnvExperiment):
         self.urukul0_ch1.set_att(10*dB)
         self.urukul0_ch2.set_att(10*dB)
         self.urukul0_ch3.set_att(10*dB)
-        self.urukul1_ch0.set_att(10*dB)
-        self.urukul1_ch1.set_att(10*dB)
-        self.urukul1_ch2.set_att(10*dB)
-        self.urukul1_ch3.set_att(10*dB)
         self.urukul0_ch0.set(100*MHz)
         self.urukul0_ch1.set(110*MHz)
         self.urukul0_ch2.set(120*MHz)
         self.urukul0_ch3.set(130*MHz)
-        self.urukul1_ch0.set(200*MHz)
-        self.urukul1_ch1.set(210*MHz)
-        self.urukul1_ch2.set(220*MHz)
-        self.urukul1_ch3.set(230*MHz)
         self.urukul0_ch0.sw.on()
         self.urukul0_ch1.sw.on()
         self.urukul0_ch2.sw.on()
         self.urukul0_ch3.sw.on()
-        self.urukul1_cpld.cfg_sw(0, 1)
-        self.urukul1_cpld.cfg_sw(1, 1)
-        self.urukul1_cpld.cfg_sw(2, 1)
-        self.urukul1_cpld.cfg_sw(3, 1)
 
     @kernel
     def count_ttls(self, n):
@@ -84,31 +62,8 @@ class Demo(EnvExperiment):
         self.ttl2.gate_rising(t)
         self.ttl3.gate_rising(t)
         at_mu(t0)
+        delay(t/10.)
         self.ttl4.pulse(t)
         self.ttl5.pulse(t)
         self.ttl6.pulse(t)
         self.ttl7.pulse(t)
-        self.ttl8.pulse(t)
-        self.ttl9.pulse(t)
-        self.ttl10.pulse(t)
-        self.ttl11.pulse(t)
-        self.ttl12.pulse(t)
-        self.ttl13.pulse(t)
-        self.ttl14.pulse(t)
-        self.ttl15.pulse(t)
-        self.ttl16.pulse(t)
-        self.ttl17.pulse(t)
-        self.ttl18.pulse(t)
-        self.ttl19.pulse(t)
-        self.ttl20.pulse(t)
-        self.ttl21.pulse(t)
-        self.ttl22.pulse(t)
-        self.ttl23.pulse(t)
-
-    @kernel
-    def set_dacs(self):
-        self.zotino0.set_leds(0xff)
-        self.zotino0.set_dac(
-            [-9. + i*.5 for i in range(32)],
-            list(range(32))
-        )

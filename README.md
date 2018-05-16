@@ -26,7 +26,7 @@ The ARTIQ source code is available at https://github.com/m-labs/artiq
 The device has been configured with the software versions below.
 An example device database, startup, idle, and demo experiments, as well
 as this document are available at:
-https://github.com/quartiq/artiq-setup/tree/ptb-huntemann-11
+https://github.com/quartiq/artiq-setup/tree/ufr-warring-17
 
 # Electrical
 
@@ -44,9 +44,9 @@ established at an appropriate place.
 ## Controller
 
 * Kasli/v1.1
-* Serial: #11
-* IP address: 10.0.16.111
-* Gateware, bootloader, firmware: 4.0.dev+1009.g1ff3d164
+* Serial: #17
+* IP address: 10.0.16.117
+* Gateware, bootloader, firmware: 4.0.dev+1017.g99f7672c
 
 ## EEM0
 
@@ -55,37 +55,8 @@ established at an appropriate place.
 * Channels 4-7: output
 * Termination: none
 
-## EEM1
-
-* DIO_SMA/v1.1
-* Channels 0-3: output
-* Channels 4-7: output
-* Termination: none
-
-## EEM2
-
-* DIO_SMA/v1.1
-* Channels 0-3: output
-* Channels 4-7: output
-* Termination: none
-
-## EEM3
-
-* Sampler/v2.0
-* Termination: none
-
 ## EEM5, EEM4
 
-* Urukul-AD9912/v1.1
+* Urukul-AD9910/v1.0
 * 100 MHz XO on clk_sel=0
 * RF outputs and CLK SMA shields grounded
-
-## EEM6
-
-* Urukul-AD9910/v1.1
-* 100 MHz XO on clk_sel=0
-* RF outputs and CLK SMA shields grounded
-
-## EEM7
-
-* Zotino/v1.1

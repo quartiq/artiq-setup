@@ -13,7 +13,7 @@ from artiq.gateware.rtio.phy import ttl_simple, ttl_serdes_7series, spi2
 from artiq.build_soc import build_artiq_soc
 
 
-class PTBHuntemann(_StandaloneBase):
+class UFrWarring(_StandaloneBase):
     def __init__(self, hw_rev=None, **kwargs):
         if hw_rev is None:
             hw_rev = "v1.1"
@@ -25,12 +25,7 @@ class PTBHuntemann(_StandaloneBase):
 
         platform = self.platform
         platform.add_extension(_dio("eem0"))
-        platform.add_extension(_dio("eem1"))
-        platform.add_extension(_dio("eem2"))
-        platform.add_extension(_sampler("eem3"))
         platform.add_extension(_urukul("eem5", "eem4"))
-        platform.add_extension(_urukul("eem6"))
-        platform.add_extension(_zotino("eem7"))
 
         try:
             # EEM clock fan-out from Si5324, not MMCX, only Kasli/v1.0
@@ -39,7 +34,7 @@ class PTBHuntemann(_StandaloneBase):
             pass
 
         rtio_channels = []
-        for i in range(24):
+        for i in range(8):
             eem, port = divmod(i, 8)
             pads = platform.request("eem{}".format(eem), port)
             if i < 4:
@@ -50,27 +45,8 @@ class PTBHuntemann(_StandaloneBase):
             self.submodules += phy
             rtio_channels.append(rtio.Channel.from_phy(phy))
 
-        # EEM3: Sampler
-        phy = spi2.SPIMaster(self.platform.request("eem3_adc_spi_p"),
-                self.platform.request("eem3_adc_spi_n"))
-        self.submodules += phy
-        rtio_channels.append(rtio.Channel.from_phy(phy, ififo_depth=16))
-        phy = spi2.SPIMaster(self.platform.request("eem3_pgia_spi_p"),
-                self.platform.request("eem3_pgia_spi_n"))
-        self.submodules += phy
-        rtio_channels.append(rtio.Channel.from_phy(phy, ififo_depth=2))
-
-        for signal in "cnv".split():
-            pads = platform.request("eem3_{}".format(signal))
-            phy = ttl_serdes_7series.Output_8X(pads.p, pads.n)
-            self.submodules += phy
-            rtio_channels.append(rtio.Channel.from_phy(phy))
-
-        pads = platform.request("eem3_sdr")
-        self.specials += DifferentialOutput(1, pads.p, pads.n)
-
-        # EEM5+EEM4, EEM6: Urukul
-        for eem in "eem5 eem6".split():
+        # EEM5+EEM4: Urukul
+        for eem in "eem5".split():
             phy = spi2.SPIMaster(self.platform.request("{}_spi_p".format(eem)),
                     self.platform.request("{}_spi_n".format(eem)))
             self.submodules += phy
@@ -84,27 +60,15 @@ class PTBHuntemann(_StandaloneBase):
             self.submodules += phy
             rtio_channels.append(rtio.Channel.from_phy(phy))
 
-        for i in range(4):
-            pads = platform.request("eem5_sw{}".format(i))
-            phy = ttl_serdes_7series.Output_8X(pads.p, pads.n)
-            self.submodules += phy
-            rtio_channels.append(rtio.Channel.from_phy(phy))
+            for i in range(4):
+                pads = platform.request("{}_sw{}".format(eem, i))
+                phy = ttl_serdes_7series.Output_8X(pads.p, pads.n)
+                self.submodules += phy
+                rtio_channels.append(rtio.Channel.from_phy(phy))
 
         for i in (1, 2):
             sfp_ctl = platform.request("sfp_ctl", i)
             phy = ttl_simple.Output(sfp_ctl.led)
-            self.submodules += phy
-            rtio_channels.append(rtio.Channel.from_phy(phy))
-
-        # EEM7: Zotino
-        phy = spi2.SPIMaster(self.platform.request("eem7_spi_p"),
-                self.platform.request("eem7_spi_n"))
-        self.submodules += phy
-        rtio_channels.append(rtio.Channel.from_phy(phy, ififo_depth=4))
-
-        for signal in "ldac_n clr_n".split():
-            pads = platform.request("eem7_{}".format(signal))
-            phy = ttl_serdes_7series.Output_8X(pads.p, pads.n)
             self.submodules += phy
             rtio_channels.append(rtio.Channel.from_phy(phy))
 
@@ -123,7 +87,7 @@ def main():
     parser.set_defaults(output_dir="artiq_kasli")
     args = parser.parse_args()
 
-    soc = PTBHuntemann(**soc_kasli_argdict(args))
+    soc = UFrWarring(**soc_kasli_argdict(args))
     build_artiq_soc(soc, builder_argdict(args))
 
 
