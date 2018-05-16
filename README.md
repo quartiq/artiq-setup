@@ -26,7 +26,7 @@ The ARTIQ source code is available at https://github.com/m-labs/artiq
 The device has been configured with the software versions below.
 An example device database, startup, idle, and demo experiments, as well
 as this document are available at:
-https://github.com/quartiq/artiq-setup/tree/ptb-huntemann-11
+https://github.com/quartiq/artiq-setup/tree/ptb-huntemann-19
 
 # Electrical
 
@@ -44,9 +44,9 @@ established at an appropriate place.
 ## Controller
 
 * Kasli/v1.1
-* Serial: #11
-* IP address: 10.0.16.111
-* Gateware, bootloader, firmware: artiq-4.0.dev b81b20ca
+* Serial: #19
+* IP address: 10.0.16.119
+* Gateware, bootloader, firmware: 4.0.dev+1009.g1ff3d164
 
 ## EEM0
 
