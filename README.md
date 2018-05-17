@@ -39,6 +39,11 @@ The controller and the modules are electrically floating and not connected
 to mains ground via the power supply. A proper ground connection should be
 established at an appropriate place.
 
+# Thermal
+
+The crate needs unrestricted airflow for cooling. Keep the bottom and top
+surfaces clear. In a rack leave 1U below and 1U above unused or use a [fan](https://www.reichelt.de/Zubehoer-Schaltschrankgehaeuse/LOGILINK-FAU02FG/3/index.html?ARTICLE=161905) [tray](https://www.digikey.de/product-detail/en/orion-fans/OA300ST-230/1053-1428-ND/2658718).
+
 # Components
 
 ## Controller
