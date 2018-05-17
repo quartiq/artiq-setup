@@ -61,6 +61,22 @@ $ artiq_session
 The crate needs unrestricted airflow for cooling. Keep the bottom and top
 surfaces clear. In a rack leave 1U below and 1U above unused or use a [fan](https://www.reichelt.de/Zubehoer-Schaltschrankgehaeuse/LOGILINK-FAU02FG/3/index.html?ARTICLE=161905) [tray](https://www.digikey.de/product-detail/en/orion-fans/OA300ST-230/1053-1428-ND/2658718).
 
+# Network
+
+The system is shipped with a pair of BiDi SFP modules ([1000Base-BX-U](https://www.fs.com/products/11802.html) and [1000Base-BX-D](https://www.fs.com/products/11795.html)) and a fiber.
+Release the violet SFP modules from the SFP1 slot of Kasli by flipping the wire
+handle down, extract it, and place it in a switch (e.g. [Netgear
+GS110TP](https://www.netgear.com/support/product/GS110TP.aspx)) or a media
+converter (e.g. [TP-Link
+MC220L](https://www.tp-link.com/us/products/details/cat-43_MC220L.html)).
+Connect the blue SFP module in Kasli and the violet module in the switch with
+the simplex fiber.
+
+Ensure that your switch or media converter supports "generic" (i.e. not same vendor) SFP modules with 1000Base-X (no auto negotiation) mode. Some switch vendors are picky with regards to the SFP module vendors.
+
+Alternatively, obtain different SFP modules (e.g. a pair of 1000Base-LX or
+1000Base-SX and a duplex fiber, a direct attach cable, or a RJ45 1000Base-T GBIC) that fit your infrastructure.
+
 # Components
 
 ## Controller
