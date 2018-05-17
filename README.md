@@ -26,7 +26,7 @@ The ARTIQ source code is available at https://github.com/m-labs/artiq
 The device has been configured with the software versions below.
 An example device database, startup, idle, and demo experiments, as well
 as this document are available at:
-https://github.com/quartiq/artiq-setup/tree/ufr-warring-17
+https://github.com/quartiq/artiq-setup/tree/ufr-warring
 
 # Electrical
 
