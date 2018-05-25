@@ -32,7 +32,7 @@ to be available. Insert the `dev` label between the `main` and the
 
 ```
 $ conda config --prepend channels http://conda.anaconda.org/conda-forge/label/main
-$ conda config --prepend channels http://conda.anaconda.org/conda-forge/label/dev
+$ conda config --prepend channels http://conda.anaconda.org/m-labs/label/dev
 $ conda config --prepend channels http://conda.anaconda.org/m-labs/label/main
 ```
 
@@ -40,7 +40,7 @@ Create and activate a conda environment for the exact ARTIQ package
 release matching the gateware and software on your device:
 
 ```
-$ conda create -n artiq-4 artiq=4.0.de=822+git1ef673c2
+$ conda create -n artiq-4 artiq=4.0.dev=822+git1ef673c2
 ```
 
 Clone this repository containing the device database and example experiments:
