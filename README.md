@@ -1,3 +1,9 @@
+# LEGACY code
+
+This repository is not maintained. It contains snapshots of previous device
+configurations and target definitions. They have all been consolidated into the
+ARTIQ master branch and will be released as ARTIQ 4.x.
+
 # Sinara
 
 The Sinara components are open hardware. The designs are available under the
@@ -20,72 +26,3 @@ You should have received a copy of the GNU Lesser General Public License along
 with ARTIQ. If not, see <http://www.gnu.org/licenses/>.
 
 The ARTIQ source code is available at https://github.com/m-labs/artiq
-
-# Code
-
-The device has been configured with the software versions below.
-An example device database, startup, idle, and demo experiments, as well
-as this document are available at:
-https://github.com/quartiq/artiq-setup/tree/ptb-huntemann-11
-
-# Electrical
-
-Modification and disassembly of the crate must only be done with proper ESD
-protection and with the devices disconnected. Modifications that go beyond the
-manipulation of the DIP switches or addition/removal of modules by qualified
-personnel will void the warranty.
-
-The controller and the modules are electrically floating and not connected
-to mains ground via the power supply. A proper ground connection should be
-established at an appropriate place.
-
-# Components
-
-## Controller
-
-* Kasli/v1.1
-* Serial: #11
-* IP address: 10.0.16.111
-* Gateware, bootloader, firmware: artiq-4.0.dev b81b20ca
-
-## EEM0
-
-* DIO_SMA/v1.1
-* Channels 0-3: input
-* Channels 4-7: output
-* Termination: none
-
-## EEM1
-
-* DIO_SMA/v1.1
-* Channels 0-3: output
-* Channels 4-7: output
-* Termination: none
-
-## EEM2
-
-* DIO_SMA/v1.1
-* Channels 0-3: output
-* Channels 4-7: output
-* Termination: none
-
-## EEM3
-
-* Sampler/v2.0
-* Termination: none
-
-## EEM5, EEM4
-
-* Urukul-AD9912/v1.1
-* 100 MHz XO on clk_sel=0
-* RF outputs and CLK SMA shields grounded
-
-## EEM6
-
-* Urukul-AD9910/v1.1
-* 100 MHz XO on clk_sel=0
-* RF outputs and CLK SMA shields grounded
-
-## EEM7
-
-* Zotino/v1.1
